@@ -40,10 +40,10 @@ namespace ROI
 
             var id = Convert.ToInt64(roiId);
 
-            var orderInDB = _context.tOrders.FirstOrDefault(o => o.ROIOrderId == id);
+            var orderInDb = _context.tOrders.FirstOrDefault(o => o.ROIOrderId == id);
 
-            if (orderInDB != null)
-                orderInDB.FailedInProcessing = true;
+            if (orderInDb != null)
+                orderInDb.FailedInProcessing = true;
 
             _context.SaveChanges();
 

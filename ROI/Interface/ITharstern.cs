@@ -18,7 +18,7 @@ namespace ROI.Interface
         Task<List<string>> SubEstimateToTharstern(Order o, string po, Dictionary<string, string> messages, AddressDetails customerAddress);
         string CreatePreDeliveryNoteCustomer(AddressDetails customerAddress, Order o, TharEstimateRequest tharEst, string fileCopies);
         string CreatePreDeliveryNote(Order o, TharEstimateRequest tharEst);
-        void SetBindingSide(PrintOptions x, int ProductTypeId, TharEstimateRequest.TharEstParts part);
+        void SetBindingSide(PrintOptions x, int productTypeId, TharEstimateRequest.TharEstParts part);
         void SetFoldingScheme(PrintOptions x, TharEstimateRequest.TharEstParts part);
         void SetFoldingProcess(PrintOptions x, List<TharEstimateRequest.tharProcesses> listPartProcess);
         string GetSpecificPress(PrintOptions x, string digiOrLitho, TharEstimateRequest.TharEstParts part);
@@ -56,7 +56,7 @@ namespace ROI.Interface
         string GetPaperCode(PrintOptions specification, string orderId, string digiOrLitho, string partType, string documentid);
         string SetGsm(string orderId, string digiOrLitho, string gsm, string paper, string documentid);
         string GetPaper(string stock);
-        void UpdateJobDelNote(string documentId, string DelNote);
-        void UpdateCustomerDelNote(string documentId, string DelNote);
+        void UpdateJobDelNote(string documentId, string delNote);
+        void UpdateCustomerDelNote(string documentId, string delNote);
     }
 }

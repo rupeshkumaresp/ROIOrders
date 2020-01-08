@@ -476,11 +476,11 @@ namespace nsTharsternAPI
 
                                 if (responseString != null)
                                 {
-                                    int Pos1 = responseString.IndexOf("DeliveryNoteID") + "DeliveryNoteID".Length;
+                                    int pos1 = responseString.IndexOf("DeliveryNoteID") + "DeliveryNoteID".Length;
 
-                                    int Pos2 = responseString.IndexOf("Result");
+                                    int pos2 = responseString.IndexOf("Result");
 
-                                    var DelNoteId = responseString.Substring(Pos1, Pos2 - Pos1);
+                                    var DelNoteId = responseString.Substring(pos1, pos2 - pos1);
 
 
                                     DelNoteId = DelNoteId.Trim();
