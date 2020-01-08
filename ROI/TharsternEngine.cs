@@ -1919,10 +1919,10 @@ namespace ROI
                 stock = stock.Trim();
                 string gsm = specification.CoverGsm;
 
-                if (stock == "laser guaranteed uncoated" && gsm == "120")
-                {
-                    return "NAV001-2";
-                }
+                //if (stock == "laser guaranteed uncoated" && gsm == "120")
+                //{
+                //    return "NAV001-2";
+                //}
 
                 string paper = GetPaper(stock);
                 string newGsm = SetGsm(orderId, digiOrLitho, gsm, paper, documentid);
@@ -1957,10 +1957,10 @@ namespace ROI
                 string gsm = specification.Gsm.Replace("GSM", "");
 
 
-                if (stock == "laser guaranteed uncoated" && gsm == "120")
-                {
-                    return "NAV001-2";
-                }
+                //if (stock == "laser guaranteed uncoated" && gsm == "120")
+                //{
+                //    return "NAV001-2";
+                //}
                 string paper = GetPaper(stock);
                 string newGsm = SetGsm(orderId, digiOrLitho, gsm, paper, documentid);
 
@@ -2033,6 +2033,11 @@ namespace ROI
             if (stock == "VISION SUPERIOR")
             {
                 return "VISION";
+            }
+
+            if (stock.ToUpper().Contains("LASER GUARANTEED UNCOATED"))
+            {
+                return "PREPRI";
             }
 
             if (stock == "INVERCOTE CREATO")

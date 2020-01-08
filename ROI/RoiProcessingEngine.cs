@@ -20,7 +20,7 @@ namespace ROI
         {
             OrderManager orderManager = new OrderManager();
 
-            var cutOffDate = new DateTime(2019, 11, 27);
+            var cutOffDate = new DateTime(2020, 1, 1);
             var days = DateTime.Now.Subtract(cutOffDate).Days;
             var orderIds = RoiClient.GetOrderIdListByDateRange(DateTime.Now.AddDays(-1 * days), DateTime.Now, Token);
 
