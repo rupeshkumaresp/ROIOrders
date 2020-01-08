@@ -217,7 +217,7 @@ namespace ROI
                 if (string.IsNullOrEmpty(email))
                     continue;
 
-                var timeNow = System.DateTime.Now.ToString("MM/dd/yyyy H:mm:ss");
+                var timeNow = DateTime.Now.ToString("MM/dd/yyyy H:mm:ss");
 
                 EmailHelper.SendMail(email,
                           "ROI Order Summary - " + timeNow, defaultMessage);
