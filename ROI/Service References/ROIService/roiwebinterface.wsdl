@@ -1,0 +1,1249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://roidistribution.com/webapi" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://roidistribution.com/webapi" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://roidistribution.com/webapi">
+      <s:element name="GetOrderIdListByDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDateTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderIdListByDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderIdListByDateRangeResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrderIdListForDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderIdListForDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderIdListForDateResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderListByDateRange">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromDateTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDateTime" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderListByDateRangeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderListByDateRangeResult" type="tns:ArrayOfOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Order" nillable="true" type="tns:Order" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Order">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="externalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dateTimeOrderPlaced" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="approvalWorkflowName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="orderReviewer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reviewerComment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="handlingCharge" type="tns:MoneySum" />
+          <s:element minOccurs="0" maxOccurs="1" name="shippingCharge" type="tns:MoneySum" />
+          <s:element minOccurs="0" maxOccurs="1" name="orderTotal" type="tns:MoneySum" />
+          <s:element minOccurs="0" maxOccurs="1" name="orderTax" type="tns:MoneySum" />
+          <s:element minOccurs="1" maxOccurs="1" name="orderWeight" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="orderParts" type="tns:ArrayOfOrderPart" />
+          <s:element minOccurs="0" maxOccurs="1" name="documentIdList" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomShippingFields" type="tns:ArrayOfCustomField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MoneySum">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="unit" type="tns:CurrencyUnit" />
+          <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CurrencyUnit">
+        <s:restriction base="s:string">
+          <s:enumeration value="eUnknown" />
+          <s:enumeration value="ePound" />
+          <s:enumeration value="eDollar" />
+          <s:enumeration value="eEuro" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfOrderPart">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderPart" nillable="true" type="tns:OrderPart" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderPart">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="documentIdList" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="shippingAddress" type="tns:Address" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Address">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="forename" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="surname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="line1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="line2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="postcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="country" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomField" nillable="true" type="tns:CustomField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrderListForDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderListForDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderListForDateResult" type="tns:ArrayOfOrder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderResult" type="tns:Order" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderItem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderItemId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderItemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderItemResult" type="tns:OrderItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrderItemId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Price" type="tns:MoneySum" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:OrderItemStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFormFillFields" type="tns:ArrayOfCustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomPrintingFields" type="tns:ArrayOfCustomField" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OrderItemStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Shipped" />
+          <s:enumeration value="Unreviewed" />
+          <s:enumeration value="PendingData" />
+          <s:enumeration value="PendingPrep" />
+          <s:enumeration value="Ready" />
+          <s:enumeration value="Sent" />
+          <s:enumeration value="Rendered" />
+          <s:enumeration value="Failed" />
+          <s:enumeration value="Packed" />
+          <s:enumeration value="Printed" />
+          <s:enumeration value="Rejected" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetOrderItemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderItemIdList" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderItemListResult" type="tns:ArrayOfOrderItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderItem" nillable="true" type="tns:OrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="productId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductResult" type="tns:Product" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Product">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProductId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomProductFields" type="tns:ArrayOfCustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomProductCategories" type="tns:ArrayOfProductCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductCategory" nillable="true" type="tns:ProductCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="prodIdList" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductListResult" type="tns:ArrayOfProduct" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductIdListOfActiveProducts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProductIdListOfActiveProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductIdListOfActiveProductsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegisterCallback">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="tns:Event" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Event">
+        <s:restriction base="s:string">
+          <s:enumeration value="OrderCreated" />
+          <s:enumeration value="OrderReadyForProduction" />
+          <s:enumeration value="OrderItemRendered" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RegisterCallbackResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnregisterCallback">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="eventId" type="tns:Event" />
+            <s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnregisterCallbackResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SetOrderItemStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderItemId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="orderItemStatus" type="tns:OrderItemStatus" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetOrderItemStatusResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DoesUserExist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoesUserExistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DoesUserExistResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoginTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoginTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLoginTicketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserByIdResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomUserFields" type="tns:ArrayOfCustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomUserGroups" type="tns:ArrayOfUserGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfUserGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserGroup" nillable="true" type="tns:UserGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserByLogonName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="logonName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserByLogonNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserByLogonNameResult" type="tns:User" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userFields" type="tns:ArrayOfCustomField" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetUserFieldsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllUserGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllUserGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllUserGroupsResult" type="tns:ArrayOfUserGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserToUserGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userGroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddUserToUserGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddUserToUserGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUserFromUserGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userGroupId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUserFromUserGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RemoveUserFromUserGroupResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderFieldsResult" type="tns:ArrayOfCustomField" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetOrderFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderFields" type="tns:ArrayOfCustomField" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetOrderFieldsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetOrderItemOutputPath">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderItemId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderItemOutputPathResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderItemOutputPathResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrderIdListByDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderIdListByDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderIdListByDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderIdListByDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderIdListForDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderIdListForDate" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderIdListForDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderIdListForDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderListByDateRangeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderListByDateRange" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderListByDateRangeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderListByDateRangeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderListForDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderListForDate" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderListForDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderListForDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderItem" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderItemList" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProduct" />
+  </wsdl:message>
+  <wsdl:message name="GetProductSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductList" />
+  </wsdl:message>
+  <wsdl:message name="GetProductListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIdListOfActiveProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductIdListOfActiveProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetProductIdListOfActiveProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductIdListOfActiveProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCallbackSoapIn">
+    <wsdl:part name="parameters" element="tns:RegisterCallback" />
+  </wsdl:message>
+  <wsdl:message name="RegisterCallbackSoapOut">
+    <wsdl:part name="parameters" element="tns:RegisterCallbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnregisterCallbackSoapIn">
+    <wsdl:part name="parameters" element="tns:UnregisterCallback" />
+  </wsdl:message>
+  <wsdl:message name="UnregisterCallbackSoapOut">
+    <wsdl:part name="parameters" element="tns:UnregisterCallbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderItemStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:SetOrderItemStatus" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderItemStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:SetOrderItemStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserExistSoapIn">
+    <wsdl:part name="parameters" element="tns:DoesUserExist" />
+  </wsdl:message>
+  <wsdl:message name="DoesUserExistSoapOut">
+    <wsdl:part name="parameters" element="tns:DoesUserExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateUser" />
+  </wsdl:message>
+  <wsdl:message name="CreateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLoginTicket" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLoginTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserById" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByLogonNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserByLogonName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserByLogonNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserByLogonNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetUserFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetUserFields" />
+  </wsdl:message>
+  <wsdl:message name="SetUserFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetUserFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUserGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetAllUserGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllUserGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddUserToUserGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:AddUserToUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="AddUserToUserGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:AddUserToUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserFromUserGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromUserGroup" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserFromUserGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromUserGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderFields" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:SetOrderFields" />
+  </wsdl:message>
+  <wsdl:message name="SetOrderFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:SetOrderFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemOutputPathSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderItemOutputPath" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderItemOutputPathSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderItemOutputPathResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ROIWebInterfaceSoap">
+    <wsdl:operation name="GetOrderIdListByDateRange">
+      <wsdl:input message="tns:GetOrderIdListByDateRangeSoapIn" />
+      <wsdl:output message="tns:GetOrderIdListByDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderIdListForDate">
+      <wsdl:input message="tns:GetOrderIdListForDateSoapIn" />
+      <wsdl:output message="tns:GetOrderIdListForDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListByDateRange">
+      <wsdl:input message="tns:GetOrderListByDateRangeSoapIn" />
+      <wsdl:output message="tns:GetOrderListByDateRangeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListForDate">
+      <wsdl:input message="tns:GetOrderListForDateSoapIn" />
+      <wsdl:output message="tns:GetOrderListForDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <wsdl:input message="tns:GetOrderSoapIn" />
+      <wsdl:output message="tns:GetOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItem">
+      <wsdl:input message="tns:GetOrderItemSoapIn" />
+      <wsdl:output message="tns:GetOrderItemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemList">
+      <wsdl:input message="tns:GetOrderItemListSoapIn" />
+      <wsdl:output message="tns:GetOrderItemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <wsdl:input message="tns:GetProductSoapIn" />
+      <wsdl:output message="tns:GetProductSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <wsdl:input message="tns:GetProductListSoapIn" />
+      <wsdl:output message="tns:GetProductListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIdListOfActiveProducts">
+      <wsdl:input message="tns:GetProductIdListOfActiveProductsSoapIn" />
+      <wsdl:output message="tns:GetProductIdListOfActiveProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCallback">
+      <wsdl:input message="tns:RegisterCallbackSoapIn" />
+      <wsdl:output message="tns:RegisterCallbackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterCallback">
+      <wsdl:input message="tns:UnregisterCallbackSoapIn" />
+      <wsdl:output message="tns:UnregisterCallbackSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderItemStatus">
+      <wsdl:input message="tns:SetOrderItemStatusSoapIn" />
+      <wsdl:output message="tns:SetOrderItemStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserExist">
+      <wsdl:input message="tns:DoesUserExistSoapIn" />
+      <wsdl:output message="tns:DoesUserExistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:input message="tns:CreateUserSoapIn" />
+      <wsdl:output message="tns:CreateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginTicket">
+      <wsdl:input message="tns:GetLoginTicketSoapIn" />
+      <wsdl:output message="tns:GetLoginTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <wsdl:input message="tns:GetUserByIdSoapIn" />
+      <wsdl:output message="tns:GetUserByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByLogonName">
+      <wsdl:input message="tns:GetUserByLogonNameSoapIn" />
+      <wsdl:output message="tns:GetUserByLogonNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFields">
+      <wsdl:input message="tns:SetUserFieldsSoapIn" />
+      <wsdl:output message="tns:SetUserFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups">
+      <wsdl:input message="tns:GetAllUserGroupsSoapIn" />
+      <wsdl:output message="tns:GetAllUserGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToUserGroup">
+      <wsdl:input message="tns:AddUserToUserGroupSoapIn" />
+      <wsdl:output message="tns:AddUserToUserGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromUserGroup">
+      <wsdl:input message="tns:RemoveUserFromUserGroupSoapIn" />
+      <wsdl:output message="tns:RemoveUserFromUserGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFields">
+      <wsdl:input message="tns:GetOrderFieldsSoapIn" />
+      <wsdl:output message="tns:GetOrderFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderFields">
+      <wsdl:input message="tns:SetOrderFieldsSoapIn" />
+      <wsdl:output message="tns:SetOrderFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemOutputPath">
+      <wsdl:input message="tns:GetOrderItemOutputPathSoapIn" />
+      <wsdl:output message="tns:GetOrderItemOutputPathSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ROIWebInterfaceSoap" type="tns:ROIWebInterfaceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderIdListByDateRange">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderIdListByDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderIdListForDate">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderIdListForDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListByDateRange">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderListByDateRange" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListForDate">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderListForDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItem">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderItem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemList">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderItemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetProductList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIdListOfActiveProducts">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetProductIdListOfActiveProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCallback">
+      <soap:operation soapAction="http://roidistribution.com/webapi/RegisterCallback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterCallback">
+      <soap:operation soapAction="http://roidistribution.com/webapi/UnregisterCallback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderItemStatus">
+      <soap:operation soapAction="http://roidistribution.com/webapi/SetOrderItemStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserExist">
+      <soap:operation soapAction="http://roidistribution.com/webapi/DoesUserExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://roidistribution.com/webapi/CreateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginTicket">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetLoginTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByLogonName">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetUserByLogonName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFields">
+      <soap:operation soapAction="http://roidistribution.com/webapi/SetUserFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetAllUserGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToUserGroup">
+      <soap:operation soapAction="http://roidistribution.com/webapi/AddUserToUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromUserGroup">
+      <soap:operation soapAction="http://roidistribution.com/webapi/RemoveUserFromUserGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFields">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderFields">
+      <soap:operation soapAction="http://roidistribution.com/webapi/SetOrderFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemOutputPath">
+      <soap:operation soapAction="http://roidistribution.com/webapi/GetOrderItemOutputPath" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ROIWebInterfaceSoap12" type="tns:ROIWebInterfaceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderIdListByDateRange">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderIdListByDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderIdListForDate">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderIdListForDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListByDateRange">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderListByDateRange" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderListForDate">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderListForDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrder">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItem">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderItem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemList">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProduct">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductList">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetProductList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductIdListOfActiveProducts">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetProductIdListOfActiveProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterCallback">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/RegisterCallback" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnregisterCallback">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/UnregisterCallback" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderItemStatus">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/SetOrderItemStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoesUserExist">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/DoesUserExist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/CreateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginTicket">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetLoginTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetUserById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByLogonName">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetUserByLogonName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetUserFields">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/SetUserFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUserGroups">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetAllUserGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToUserGroup">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/AddUserToUserGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromUserGroup">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/RemoveUserFromUserGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderFields">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOrderFields">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/SetOrderFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderItemOutputPath">
+      <soap12:operation soapAction="http://roidistribution.com/webapi/GetOrderItemOutputPath" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ROIWebInterface">
+    <wsdl:port name="ROIWebInterfaceSoap" binding="tns:ROIWebInterfaceSoap">
+      <soap:address location="https://kingfisher.roi360.co.uk/roiwebinterface.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ROIWebInterfaceSoap12" binding="tns:ROIWebInterfaceSoap12">
+      <soap12:address location="https://kingfisher.roi360.co.uk/roiwebinterface.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TharDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DeliveryNote">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Instructions" Type="varchar" MaxLength="4000" />
+          <Property Name="AdditionalNotes" Type="varchar" MaxLength="4000" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
+          <Property Name="IsPreDelivery" Type="bit" Nullable="false" />
+          <Property Name="DelNoteNumber" Type="varchar" MaxLength="32" />
+          <Property Name="Datedb" Type="datetime" />
+          <Property Name="OrderNo" Type="varchar" MaxLength="32" />
+          <Property Name="GRNNo" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryCode" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryName" Type="varchar" MaxLength="64" />
+          <Property Name="DeliveryAddress" Type="varchar" MaxLength="255" />
+          <Property Name="DeliveryTown" Type="varchar" MaxLength="64" />
+          <Property Name="DeliveryCounty" Type="varchar" MaxLength="64" />
+          <Property Name="DeliveryPostCode" Type="varchar" MaxLength="10" />
+          <Property Name="DeliveryCountry" Type="varchar" MaxLength="64" />
+          <Property Name="DeliveryContact" Type="varchar" MaxLength="64" />
+          <Property Name="DeliveryTel" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryFax" Type="varchar" MaxLength="32" />
+          <Property Name="FromCode" Type="varchar" MaxLength="32" />
+          <Property Name="FromName" Type="varchar" MaxLength="64" />
+          <Property Name="FromAddress" Type="varchar" MaxLength="255" />
+          <Property Name="FromTown" Type="varchar" MaxLength="64" />
+          <Property Name="FromCounty" Type="varchar" MaxLength="64" />
+          <Property Name="FromPostCode" Type="varchar" MaxLength="10" />
+          <Property Name="FromCountry" Type="varchar" MaxLength="64" />
+          <Property Name="FromContact" Type="varchar" MaxLength="64" />
+          <Property Name="FromTel" Type="varchar" MaxLength="32" />
+          <Property Name="FromFax" Type="varchar" MaxLength="32" />
+          <Property Name="DeliveryType" Type="tinyint" Nullable="false" />
+          <Property Name="CustomerRef" Type="varchar" MaxLength="32" />
+          <Property Name="CustomerRef2" Type="varchar" MaxLength="32" />
+          <Property Name="Courier" Type="varchar" MaxLength="32" />
+          <Property Name="DelDateTime" Type="datetime" />
+          <Property Name="ConsignNote" Type="varchar" MaxLength="32" />
+          <Property Name="Contact" Type="varchar" MaxLength="32" />
+          <Property Name="DelConsignType" Type="varchar" MaxLength="32" />
+          <Property Name="SignedFor" Type="varchar" MaxLength="128" />
+          <Property Name="ProofDateTime" Type="datetime" />
+          <Property Name="ReqDate" Type="datetime" />
+          <Property Name="TakenBy" Type="varchar" MaxLength="64" />
+          <Property Name="IsStockUpdated" Type="bit" Nullable="false" />
+          <Property Name="CompletedDate" Type="datetime" />
+          <Property Name="DelAddressType" Type="tinyint" Nullable="false" />
+          <Property Name="FromAddressType" Type="tinyint" Nullable="false" />
+          <Property Name="DeliveryCountryOfOrigin" Type="char" MaxLength="2" />
+          <Property Name="FromCountryOfOrigin" Type="char" MaxLength="2" />
+          <Property Name="CourierServiceID" Type="int" Nullable="false" />
+          <Property Name="CourierPrice" Type="float" Nullable="false" />
+          <Property Name="Boxes" Type="smallint" Nullable="false" />
+          <Property Name="Pallets" Type="tinyint" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="TotalWeight" Type="float" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CollectionOnly" Type="bit" Nullable="false" />
+          <Property Name="SecurityGroupID" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="CourierStatus" Type="varchar" MaxLength="64" />
+          <Property Name="CourierAccountType" Type="tinyint" Nullable="false" />
+          <Property Name="DespatchDetailsID" Type="int" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" />
+          <Property Name="ModifiedByUserID" Type="int" />
+          <Property Name="dbTimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="32" />
+          <Property Name="AutoCreatedFromPick" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TharDataModelStoreContainer">
+          <EntitySet Name="DeliveryNote" EntityType="Self.DeliveryNote" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TharDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DeliveryNote">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Instructions" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalNotes" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
+          <Property Name="IsPreDelivery" Type="Boolean" Nullable="false" />
+          <Property Name="DelNoteNumber" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Datedb" Type="DateTime" Precision="3" />
+          <Property Name="OrderNo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="GRNNo" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryCode" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryTown" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryCounty" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryPostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryCountry" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryContact" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryTel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryFax" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FromCode" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FromName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FromTown" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromCounty" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromPostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FromCountry" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromContact" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="FromTel" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="FromFax" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryType" Type="Byte" Nullable="false" />
+          <Property Name="CustomerRef" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerRef2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Courier" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DelDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ConsignNote" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="DelConsignType" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SignedFor" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ProofDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ReqDate" Type="DateTime" Precision="3" />
+          <Property Name="TakenBy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="IsStockUpdated" Type="Boolean" Nullable="false" />
+          <Property Name="CompletedDate" Type="DateTime" Precision="3" />
+          <Property Name="DelAddressType" Type="Byte" Nullable="false" />
+          <Property Name="FromAddressType" Type="Byte" Nullable="false" />
+          <Property Name="DeliveryCountryOfOrigin" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FromCountryOfOrigin" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CourierServiceID" Type="Int32" Nullable="false" />
+          <Property Name="CourierPrice" Type="Double" Nullable="false" />
+          <Property Name="Boxes" Type="Int16" Nullable="false" />
+          <Property Name="Pallets" Type="Byte" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="TotalWeight" Type="Double" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CollectionOnly" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityGroupID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CourierStatus" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="CourierAccountType" Type="Byte" Nullable="false" />
+          <Property Name="DespatchDetailsID" Type="Int32" Nullable="false" />
+          <Property Name="DateModified" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByUserID" Type="Int32" />
+          <Property Name="dbTimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Phone" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="AutoCreatedFromPick" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TharDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DeliveryNote" EntityType="Self.DeliveryNote" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TharDataModelStoreContainer" CdmEntityContainer="TharDataEntities">
+          <EntitySetMapping Name="DeliveryNote">
+            <EntityTypeMapping TypeName="TharDataModel.DeliveryNote">
+              <MappingFragment StoreEntitySet="DeliveryNote">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="AdditionalNotes" ColumnName="AdditionalNotes" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsPreDelivery" ColumnName="IsPreDelivery" />
+                <ScalarProperty Name="DelNoteNumber" ColumnName="DelNoteNumber" />
+                <ScalarProperty Name="Datedb" ColumnName="Datedb" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="GRNNo" ColumnName="GRNNo" />
+                <ScalarProperty Name="DeliveryCode" ColumnName="DeliveryCode" />
+                <ScalarProperty Name="DeliveryName" ColumnName="DeliveryName" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="DeliveryTown" ColumnName="DeliveryTown" />
+                <ScalarProperty Name="DeliveryCounty" ColumnName="DeliveryCounty" />
+                <ScalarProperty Name="DeliveryPostCode" ColumnName="DeliveryPostCode" />
+                <ScalarProperty Name="DeliveryCountry" ColumnName="DeliveryCountry" />
+                <ScalarProperty Name="DeliveryContact" ColumnName="DeliveryContact" />
+                <ScalarProperty Name="DeliveryTel" ColumnName="DeliveryTel" />
+                <ScalarProperty Name="DeliveryFax" ColumnName="DeliveryFax" />
+                <ScalarProperty Name="FromCode" ColumnName="FromCode" />
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
+                <ScalarProperty Name="FromTown" ColumnName="FromTown" />
+                <ScalarProperty Name="FromCounty" ColumnName="FromCounty" />
+                <ScalarProperty Name="FromPostCode" ColumnName="FromPostCode" />
+                <ScalarProperty Name="FromCountry" ColumnName="FromCountry" />
+                <ScalarProperty Name="FromContact" ColumnName="FromContact" />
+                <ScalarProperty Name="FromTel" ColumnName="FromTel" />
+                <ScalarProperty Name="FromFax" ColumnName="FromFax" />
+                <ScalarProperty Name="DeliveryType" ColumnName="DeliveryType" />
+                <ScalarProperty Name="CustomerRef" ColumnName="CustomerRef" />
+                <ScalarProperty Name="CustomerRef2" ColumnName="CustomerRef2" />
+                <ScalarProperty Name="Courier" ColumnName="Courier" />
+                <ScalarProperty Name="DelDateTime" ColumnName="DelDateTime" />
+                <ScalarProperty Name="ConsignNote" ColumnName="ConsignNote" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="DelConsignType" ColumnName="DelConsignType" />
+                <ScalarProperty Name="SignedFor" ColumnName="SignedFor" />
+                <ScalarProperty Name="ProofDateTime" ColumnName="ProofDateTime" />
+                <ScalarProperty Name="ReqDate" ColumnName="ReqDate" />
+                <ScalarProperty Name="TakenBy" ColumnName="TakenBy" />
+                <ScalarProperty Name="IsStockUpdated" ColumnName="IsStockUpdated" />
+                <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+                <ScalarProperty Name="DelAddressType" ColumnName="DelAddressType" />
+                <ScalarProperty Name="FromAddressType" ColumnName="FromAddressType" />
+                <ScalarProperty Name="DeliveryCountryOfOrigin" ColumnName="DeliveryCountryOfOrigin" />
+                <ScalarProperty Name="FromCountryOfOrigin" ColumnName="FromCountryOfOrigin" />
+                <ScalarProperty Name="CourierServiceID" ColumnName="CourierServiceID" />
+                <ScalarProperty Name="CourierPrice" ColumnName="CourierPrice" />
+                <ScalarProperty Name="Boxes" ColumnName="Boxes" />
+                <ScalarProperty Name="Pallets" ColumnName="Pallets" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CollectionOnly" ColumnName="CollectionOnly" />
+                <ScalarProperty Name="SecurityGroupID" ColumnName="SecurityGroupID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CourierStatus" ColumnName="CourierStatus" />
+                <ScalarProperty Name="CourierAccountType" ColumnName="CourierAccountType" />
+                <ScalarProperty Name="DespatchDetailsID" ColumnName="DespatchDetailsID" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="ModifiedByUserID" ColumnName="ModifiedByUserID" />
+                <ScalarProperty Name="dbTimeStamp" ColumnName="dbTimeStamp" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="AutoCreatedFromPick" ColumnName="AutoCreatedFromPick" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

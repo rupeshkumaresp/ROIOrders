@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ROIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FinalSizeMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="nvarchar(max)" />
+          <Property Name="FinalSizeHeight" Type="nvarchar(max)" />
+          <Property Name="FinalSizeWidth" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tNotReadyOrders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROIOrderID" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar(max)" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tOrders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROIOrderId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="OrderTotal" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="OrderPlacedDate" Type="datetime" />
+          <Property Name="PushedToTharstern" Type="bit" />
+          <Property Name="FailedInProcessing" Type="bit" />
+        </EntityType>
+        <EntityType Name="tOrderTharsternPushDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="bigint" Nullable="false" />
+          <Property Name="DocumentId" Type="nvarchar(max)" />
+          <Property Name="TharsternJson" Type="nvarchar(max)" />
+          <Property Name="PushedToTharstern" Type="bit" />
+          <Property Name="TharsternPushDatetime" Type="datetime" />
+          <Property Name="TharsternEstiamteNo" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="TharsternJobNo" Type="nvarchar(max)" />
+          <Property Name="JobDeliveryNote" Type="nvarchar(max)" />
+          <Property Name="CustomerDeliveryNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tSystemLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="DateTime" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_tOrderTharsternPushDetails_tOrders">
+          <End Role="tOrders" Type="Self.tOrders" Multiplicity="1" />
+          <End Role="tOrderTharsternPushDetails" Type="Self.tOrderTharsternPushDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="tOrderTharsternPushDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ROIModelStoreContainer">
+          <EntitySet Name="FinalSizeMapping" EntityType="Self.FinalSizeMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tNotReadyOrders" EntityType="Self.tNotReadyOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrders" EntityType="Self.tOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrderTharsternPushDetails" EntityType="Self.tOrderTharsternPushDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSystemLog" EntityType="Self.tSystemLog" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tOrderTharsternPushDetails_tOrders" Association="Self.FK_tOrderTharsternPushDetails_tOrders">
+            <End Role="tOrders" EntitySet="tOrders" />
+            <End Role="tOrderTharsternPushDetails" EntitySet="tOrderTharsternPushDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ROIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ROIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FinalSizeMapping" EntityType="ROIModel.FinalSizeMapping" />
+          <EntitySet Name="tNotReadyOrders" EntityType="ROIModel.tNotReadyOrders" />
+          <EntitySet Name="tOrders" EntityType="ROIModel.tOrders" />
+          <EntitySet Name="tOrderTharsternPushDetails" EntityType="ROIModel.tOrderTharsternPushDetails" />
+          <EntitySet Name="tSystemLog" EntityType="ROIModel.tSystemLog" />
+          <AssociationSet Name="FK_tOrderTharsternPushDetails_tOrders" Association="ROIModel.FK_tOrderTharsternPushDetails_tOrders">
+            <End Role="tOrders" EntitySet="tOrders" />
+            <End Role="tOrderTharsternPushDetails" EntitySet="tOrderTharsternPushDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FinalSizeMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FinalSizeHeight" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FinalSizeWidth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tNotReadyOrders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROIOrderID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tOrders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROIOrderId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="OrderTotal" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="OrderPlacedDate" Type="DateTime" Precision="3" />
+          <Property Name="PushedToTharstern" Type="Boolean" />
+          <Property Name="FailedInProcessing" Type="Boolean" />
+          <NavigationProperty Name="tOrderTharsternPushDetails" Relationship="ROIModel.FK_tOrderTharsternPushDetails_tOrders" FromRole="tOrders" ToRole="tOrderTharsternPushDetails" />
+        </EntityType>
+        <EntityType Name="tOrderTharsternPushDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int64" Nullable="false" />
+          <Property Name="DocumentId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TharsternJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PushedToTharstern" Type="Boolean" />
+          <Property Name="TharsternPushDatetime" Type="DateTime" Precision="3" />
+          <Property Name="TharsternEstiamteNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TharsternJobNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobDeliveryNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerDeliveryNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tOrders" Relationship="ROIModel.FK_tOrderTharsternPushDetails_tOrders" FromRole="tOrderTharsternPushDetails" ToRole="tOrders" />
+        </EntityType>
+        <EntityType Name="tSystemLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <Association Name="FK_tOrderTharsternPushDetails_tOrders">
+          <End Type="ROIModel.tOrders" Role="tOrders" Multiplicity="1" />
+          <End Type="ROIModel.tOrderTharsternPushDetails" Role="tOrderTharsternPushDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="tOrderTharsternPushDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ROIModelStoreContainer" CdmEntityContainer="ROIEntities">
+          <EntitySetMapping Name="FinalSizeMapping">
+            <EntityTypeMapping TypeName="ROIModel.FinalSizeMapping">
+              <MappingFragment StoreEntitySet="FinalSizeMapping">
+                <ScalarProperty Name="FinalSizeWidth" ColumnName="FinalSizeWidth" />
+                <ScalarProperty Name="FinalSizeHeight" ColumnName="FinalSizeHeight" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tNotReadyOrders">
+            <EntityTypeMapping TypeName="ROIModel.tNotReadyOrders">
+              <MappingFragment StoreEntitySet="tNotReadyOrders">
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ROIOrderID" ColumnName="ROIOrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrders">
+            <EntityTypeMapping TypeName="ROIModel.tOrders">
+              <MappingFragment StoreEntitySet="tOrders">
+                <ScalarProperty Name="FailedInProcessing" ColumnName="FailedInProcessing" />
+                <ScalarProperty Name="PushedToTharstern" ColumnName="PushedToTharstern" />
+                <ScalarProperty Name="OrderPlacedDate" ColumnName="OrderPlacedDate" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ROIOrderId" ColumnName="ROIOrderId" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrderTharsternPushDetails">
+            <EntityTypeMapping TypeName="ROIModel.tOrderTharsternPushDetails">
+              <MappingFragment StoreEntitySet="tOrderTharsternPushDetails">
+                <ScalarProperty Name="CustomerDeliveryNote" ColumnName="CustomerDeliveryNote" />
+                <ScalarProperty Name="JobDeliveryNote" ColumnName="JobDeliveryNote" />
+                <ScalarProperty Name="TharsternJobNo" ColumnName="TharsternJobNo" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="TharsternEstiamteNo" ColumnName="TharsternEstiamteNo" />
+                <ScalarProperty Name="TharsternPushDatetime" ColumnName="TharsternPushDatetime" />
+                <ScalarProperty Name="PushedToTharstern" ColumnName="PushedToTharstern" />
+                <ScalarProperty Name="TharsternJson" ColumnName="TharsternJson" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSystemLog">
+            <EntityTypeMapping TypeName="ROIModel.tSystemLog">
+              <MappingFragment StoreEntitySet="tSystemLog">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
