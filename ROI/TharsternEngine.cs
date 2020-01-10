@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Collections.Specialized;
+using System.Configuration;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -1021,7 +1022,7 @@ namespace ROI
 
                 //Create a New instance of PDFWriter Class for Output File
 
-                var rootPath = @"\\web2print\h$\Services\ROIOrders\ROIOrders\PO";
+                var rootPath = ConfigurationManager.AppSettings["POSavePath"];
 
                 PdfWriter.GetInstance(doc, new FileStream(rootPath + "//" + o.RoiOrderId + "_po.pdf", FileMode.Create));
 

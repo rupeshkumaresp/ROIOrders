@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TharsternAPI", "TharsternAPI\UnitTester\TharsternAPI.csproj", "{3F01A16F-49F4-4536-8A98-08910421559D}"
 EndProject
@@ -15,33 +15,34 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ROI", "ROI\ROI.csproj", "{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://thecolourhub.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ROI\\ROI.csproj
-		SccProjectName1 = ROI
-		SccLocalPath1 = ROI
-		SccProjectUniqueName2 = TharsternAPI\\UnitTester\\TharsternAPI.csproj
-		SccProjectName2 = TharsternAPI/UnitTester
-		SccLocalPath2 = TharsternAPI\\UnitTester
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3F01A16F-49F4-4536-8A98-08910421559D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F01A16F-49F4-4536-8A98-08910421559D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F01A16F-49F4-4536-8A98-08910421559D}.Debug|x64.ActiveCfg = Debug|x64
+		{3F01A16F-49F4-4536-8A98-08910421559D}.Debug|x64.Build.0 = Debug|x64
 		{3F01A16F-49F4-4536-8A98-08910421559D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F01A16F-49F4-4536-8A98-08910421559D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F01A16F-49F4-4536-8A98-08910421559D}.Release|x64.ActiveCfg = Release|x64
+		{3F01A16F-49F4-4536-8A98-08910421559D}.Release|x64.Build.0 = Release|x64
 		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Debug|x64.ActiveCfg = Debug|x64
+		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Debug|x64.Build.0 = Debug|x64
 		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Release|x64.ActiveCfg = Release|x64
+		{3F1488C1-E7A0-44BA-87A8-BF658371A4F0}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3AA0D376-C7CC-4050-B0A2-B8AAF0A5F111}
 	EndGlobalSection
 EndGlobal
